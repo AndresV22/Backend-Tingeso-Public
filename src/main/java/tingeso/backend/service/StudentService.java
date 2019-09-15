@@ -29,9 +29,7 @@ public class StudentService {
         }
     }
 
-    public StudentDto createStudent(StudentDto studentDto){
-        return studentMapper.mapToDto(studentDao.save(studentMapper.mapToModel(studentDto)));
-    }
+    public StudentDto createStudent(StudentDto studentDto){return studentMapper.mapToDto(studentDao.save(studentMapper.mapToModel(studentDto))); }
 
     public void updateStudent(StudentDto studentDto, Integer id){
         if(studentDao.findById(id).isPresent()){
