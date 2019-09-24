@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import lombok.Builder;
+import lombok.Data;
 
 @Entity
 @Data
