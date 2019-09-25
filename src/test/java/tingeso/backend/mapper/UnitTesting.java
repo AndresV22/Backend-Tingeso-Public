@@ -6,6 +6,9 @@ import tingeso.backend.dto.StudentDto;
 import tingeso.backend.model.Student;
 import tingeso.backend.service.StudentService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class UnitTesting {
@@ -62,25 +65,36 @@ public class UnitTesting {
         assertEquals(studentDtoExpected,studentDtoReal);
     }
 
+
     @Test
-    public void TestGetStudentdById() {
-        StudentService studentService = new StudentService();
-        StudentDto studentDto = new StudentDto();
-        StudentDto studentDtoExpected = new StudentDto();
-        StudentDto studentDtoReal = new StudentDto();
+    public void TestMapToDtoArrayList() {
+        StudentMapper studentMapper = new StudentMapper();
+        List<Student> studentArrayList = new ArrayList<>();
+        List<StudentDto> studentDtoArrayList = new ArrayList<>();
+        Student student = new Student();
+        Student student2 = new Student();
 
-        //Set Parameter Student
-        studentDto.setId(99);
-        studentDto.setName("Pedrito Contreras");
-        studentDto.setRut("18.765.021-k");
-        studentDto.setBirthday("07-10-93");
-        studentDto.setCareer("Ingeniería de Ejecución en Computación e Informática");
+        //Set Student 1
+        student.setId(1);
+        student.setName("Pedrito Contreras");
+        student.setRut("18.765.021-k");
+        student.setBirthday("07-10-93");
+        student.setCareer("Ingeniería de Ejecución en Computación e Informática");
 
-        //Create a StudentDto
-        studentDtoExpected = studentService.createStudent(studentDto);
+        //Set Student 2
+        student2.setId(2);
+        student2.setName("Juanito Perez");
+        student2.setRut("19.654.978-2");
+        student2.setBirthday("12-07-95");
+        student2.setCareer("Ingeniería Civil Informática");
+
+        //Add Students to array list
+        studentArrayList.add(student);
+        studentArrayList.add(student2);
+
         //Testing Method
-        studentDtoReal = studentService.getStudentById(99);
-        assertEquals(studentDtoExpected, studentDtoReal);
+        studentDtoArrayList = studentMapper.mapToDtoArrayList(studentArrayList);
+        assertNotNull(studentDtoArrayList);
 
     }
 }

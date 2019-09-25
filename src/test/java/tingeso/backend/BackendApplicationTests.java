@@ -9,7 +9,10 @@ import tingeso.backend.mapper.StudentMapper;
 import tingeso.backend.model.Student;
 import tingeso.backend.service.StudentService;
 
-import static org.junit.Assert.assertEquals;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -66,6 +69,62 @@ public class BackendApplicationTests {
 		studentDtoReal = studentMapper.mapToDto(student);
 		assertEquals(studentDtoExpected,studentDtoReal);
 	}
-	
 
+	@Test
+	public void TestMapToDtoArrayList() {
+		StudentMapper studentMapper = new StudentMapper();
+		List<Student> studentArrayList = new ArrayList<>();
+		List<StudentDto> studentDtoArrayList = new ArrayList<>();
+		Student student = new Student();
+		Student student2 = new Student();
+
+		//Set Student 1
+		student.setId(1);
+		student.setName("Pedrito Contreras");
+		student.setRut("18.765.021-k");
+		student.setBirthday("07-10-93");
+		student.setCareer("Ingeniería de Ejecución en Computación e Informática");
+
+		//Set Student 2
+		student2.setId(2);
+		student2.setName("Juanito Perez");
+		student2.setRut("19.654.978-2");
+		student2.setBirthday("12-07-95");
+		student2.setCareer("Ingeniería Civil Informática");
+
+		//Add Students to array list
+		studentArrayList.add(student);
+		studentArrayList.add(student2);
+
+		//Testing Method
+		studentDtoArrayList = studentMapper.mapToDtoArrayList(studentArrayList);
+		assertNotNull(studentDtoArrayList);
+
+	}
+
+	@Test
+	public void TestGetAllStudents() {
+		StudentService studentService = new StudentService();
+		List<StudentDto> studentDtoList = studentService.getAllStudents();
+		assertNotNull("There's no Students in the data base", studentDtoList);
+	}
+
+	@Test
+	public void TestGetStudentdById() {
+		StudentService studentService = new StudentService();
+		StudentDto studentDtoExpected = new StudentDto();
+		StudentDto studentDtoReal = new StudentDto();
+
+		//Set Parameter Student
+		studentDtoExpected.setId(1);
+		studentDtoExpected.setName("Julio");
+		studentDtoExpected.setRut("19700195k");
+		studentDtoExpected.setBirthday("2019-10-22");
+		studentDtoExpected.setCareer("Ingeniería Civil Informática");
+
+		//Testing Method
+		studentDtoReal = studentService.getStudentById(1);
+		assertEquals(studentDtoExpected, studentDtoReal);
+
+	}
 }
