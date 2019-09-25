@@ -26,7 +26,7 @@ import lombok.Data;
 import lombok.extern.java.Log;
 
 @Log
-@Data
+@Data   
 @ToString
 public class Test3test {
     private WebDriver driver;
