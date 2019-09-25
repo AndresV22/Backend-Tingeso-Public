@@ -102,29 +102,6 @@ public class BackendApplicationTests {
 
 	}
 
-	@Test
-	public void TestGetAllStudents() {
-		StudentService studentService = new StudentService();
-		List<StudentDto> studentDtoList = studentService.getAllStudents();
-		assertNotNull("There's no Students in the data base", studentDtoList);
-	}
 
-	@Test
-	public void TestGetStudentdById() {
-		StudentService studentService = new StudentService();
-		StudentDto studentDtoExpected = new StudentDto();
-		StudentDto studentDtoReal = new StudentDto();
 
-		//Set Parameter Student
-		studentDtoExpected.setId(1);
-		studentDtoExpected.setName("Julio");
-		studentDtoExpected.setRut("19700195k");
-		studentDtoExpected.setBirthday("2019-10-22");
-		studentDtoExpected.setCareer("Ingeniería Civil Informática");
-
-		//Testing Method
-		studentDtoReal = studentService.getStudentById(1);
-		assertEquals(studentDtoExpected, studentDtoReal);
-
-	}
 }
